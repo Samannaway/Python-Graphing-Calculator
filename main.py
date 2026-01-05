@@ -15,7 +15,16 @@ y = 0
 
 
 for i in finalVariableList:
-    y += ( (x**int(i[1]))  *int(i[0]))
+
+    print(finalVariableList)
+
+    if len(i) == 2:  
+        if i[1] != "c":
+            y += ( (x**int(i[1]))  *int(i[0]))
+        else:
+            y+= int(i[0])
+    else:
+        y += (x*int(i[0]))
 
 ax.grid(True)
 ax.set_xlabel("x-axis")

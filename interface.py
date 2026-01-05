@@ -15,30 +15,22 @@ root.columnconfigure(0, weight=1)
 root.columnconfigure(1, weight=1)
 root.columnconfigure(2, weight=1)
 
-
-
-
 columnFlag = 0
 input_string = "" # used globally for orthogonal persistence
 display_var = StringVar(value="") # The 'State' linked to the UI so that we don't have a orthogonal persistence error
 
-
 finalVariableList = [] # final list to be imported
-
-
 
 
 #button recognition function
 def whichButton(input):
 
-
     global input_string
 
-
-    print(type(input))
     input_string+=input
     display_var.set(input_string)
-    print(f"Current String: {input_string}")
+    print(f"Current Input: {input_string}")
+
 buttonFlag = 0
 
 
@@ -47,17 +39,29 @@ buttonFlag = 0
 # final function for making the list of powers and the coefficients associated with them
 def endButton():
 
-
     print(input_string)
     variableList = input_string.split(" ")
     print(variableList)
 
 
     for i in variableList:
-        newStr = i.replace("x", "").split("^")
-        print(newStr)
+        newStr = None
+
+        if i.find("x") != -1:
+            newStr = i.replace("x", "").split("^")
+            print(newStr)
+        else:
+            newStr = [i, "c"]    
+        
         finalVariableList.append(newStr)
 
+    root.destroy()
+
+def delButton():
+    global input_string
+
+    input_string = input_string[:len(input_string)-1]
+    print(f"Current Input : {input_string}")
 
 #configuring the UI buttons which will be displayed on tkinter
 for i in range(10):
@@ -89,17 +93,17 @@ minusButton = Button(text="-", height=2, width=5, command=lambda i=i: whichButto
 minusButton.grid(column=5, row=4, padx=5, pady=5)
 
 
-
-
 ansButton = Button(text="ANS", height=2, width=5, command=lambda i=i: endButton())
 ansButton.grid(column=3, row=6, padx=5, pady=5)
 
+backButton = Button(text="DEL", height=2, width=5, command=lambda i=i: delButton())
+backButton.grid(column=3, row=5, padx=5, pady=5)
 
 root.mainloop()
 
 
 
-
+# exporting the function
 class interFaceOutput():
     def finalListReturn():
         return finalVariableList
