@@ -3,7 +3,7 @@ from tkinter import ttk
 
 
 root = Tk()
-root.geometry("300x300")
+root.geometry("300x400")
 root.title("Graphing Calculator")
 
 
@@ -65,7 +65,7 @@ def delButton():
 
 #configuring the UI buttons which will be displayed on tkinter
 for i in range(10):
-    button = Button(text=f"{i}", height=2, width=5, command=lambda i=i: whichButton(str(i)))
+    button = Button(text=f"{i}", height=2, width=10, font="OldStandardTT", command=lambda i=i: whichButton(str(i)))
     button.grid(column=columnFlag, row=int(i/3)+3, padx=5, pady=5)
 
 
@@ -86,11 +86,11 @@ powerButton.grid(column=2, row=6, padx=5, pady=5)
 
 
 plusButton = Button(text="+", height=2, width=5, command=lambda i=i: whichButton(" +"))
-plusButton.grid(column=5, row=5, padx=5, pady=5)
+plusButton.grid(column=3, row=4, padx=5, pady=5)
 
 
 minusButton = Button(text="-", height=2, width=5, command=lambda i=i: whichButton(" -"))
-minusButton.grid(column=5, row=4, padx=5, pady=5)
+minusButton.grid(column=3, row=3, padx=5, pady=5)
 
 
 ansButton = Button(text="ANS", height=2, width=5, command=lambda i=i: endButton())
